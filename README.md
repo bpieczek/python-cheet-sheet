@@ -135,6 +135,7 @@ class Car:
 
 Car.change_wheels(6)
 print(Car.wheels)  # Output: 6
+```
 
 ## 7. Dziedziczenie wielokrotne
 
@@ -252,9 +253,11 @@ from PyQt5.QtWidgets import QLabel
 
 label = QLabel('To jest etykieta', window)
 label.move(100, 100)
-2.3. QLineEdit - Pole tekstowe
-python
-Skopiuj kod
+```
+
+### 2.3. QLineEdit - Pole tekstowe
+
+```python
 from PyQt5.QtWidgets import QLineEdit
 
 textbox = QLineEdit(window)
@@ -264,7 +267,7 @@ textbox.move(100, 150)
 ### 2.4. QComboBox - Lista rozwijana
 
 ```python
-Skopiuj kod
+
 from PyQt5.QtWidgets import QComboBox
 
 combo = QComboBox(window)
@@ -276,7 +279,6 @@ combo.move(100, 200)
 ### 2.5. QCheckBox - Pole wyboru
 
 ```python
-Skopiuj kod
 from PyQt5.QtWidgets import QCheckBox
 
 checkbox = QCheckBox('Zgadzam się', window)
@@ -286,7 +288,6 @@ checkbox.move(100, 250)
 ### 2.6. QRadioButton - Przyciski radiowe
 
 ```python
-Skopiuj kod
 from PyQt5.QtWidgets import QRadioButton
 
 radio1 = QRadioButton('Opcja 1', window)
@@ -313,50 +314,59 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QComboBox, QCheckBox, QRadioButton, QSlider
 from PyQt5.QtCore import Qt
 
-def button_clicked():
-    print("Przycisk został kliknięty!")
+class MyApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle('Przykład z kontrolkami')
+        self.setGeometry(100, 100, 400, 500)
+
+        # Przycisk
+        self.btn = QPushButton('Kliknij mnie', self)
+        self.btn.move(100, 50)
+        self.btn.clicked.connect(self.button_clicked)
+
+        # Etykieta
+        self.label = QLabel('To jest etykieta', self)
+        self.label.move(100, 100)
+
+        # Pole tekstowe
+        self.textbox = QLineEdit(self)
+        self.textbox.move(100, 150)
+
+        # Lista rozwijana
+        self.combo = QComboBox(self)
+        self.combo.addItem("Opcja 1")
+        self.combo.addItem("Opcja 2")
+        self.combo.move(100, 200)
+
+        # Checkbox
+        self.checkbox = QCheckBox('Zgadzam się', self)
+        self.checkbox.move(100, 250)
+
+        # RadioButton
+        self.radio1 = QRadioButton('Opcja 1', self)
+        self.radio1.move(100, 300)
+
+        self.radio2 = QRadioButton('Opcja 2', self)
+        self.radio2.move(100, 350)
+
+        # Suwak
+        self.slider = QSlider(Qt.Horizontal, self)
+        self.slider.move(100, 400)
+
+        self.show()
+
+    # Funkcja obsługująca kliknięcie przycisku
+    def button_clicked(self):
+        print("Przycisk został kliknięty!")
 
 app = QApplication(sys.argv)
-window = QWidget()
-window.setWindowTitle('Przykład z kontrolkami')
-window.setGeometry(100, 100, 400, 500)
-
-# Przycisk
-btn = QPushButton('Kliknij mnie', window)
-btn.move(100, 50)
-btn.clicked.connect(button_clicked)
-
-# Etykieta
-label = QLabel('To jest etykieta', window)
-label.move(100, 100)
-
-# Pole tekstowe
-textbox = QLineEdit(window)
-textbox.move(100, 150)
-
-# Lista rozwijana
-combo = QComboBox(window)
-combo.addItem("Opcja 1")
-combo.addItem("Opcja 2")
-combo.move(100, 200)
-
-# Checkbox
-checkbox = QCheckBox('Zgadzam się', window)
-checkbox.move(100, 250)
-
-# RadioButton
-radio1 = QRadioButton('Opcja 1', window)
-radio1.move(100, 300)
-radio2 = QRadioButton('Opcja 2', window)
-radio2.move(100, 350)
-
-# Suwak
-
-slider = QSlider(Qt.Horizontal, window)
-slider.move(100, 400)
-
-window.show()
+window = MyApp()
 sys.exit(app.exec_())
+
 ```
 ## 3. Łączenie sygnałów z funkcjami
 
