@@ -416,7 +416,8 @@ if __name__ == '__main__':
 W PyQt5 można ustawiać układy (layouty), aby lepiej kontrolować rozmieszczenie widgetów w oknie. Poniżej przykład użycia `QVBoxLayout`.
 
 ```python
-from PyQt5.QtWidgets import QVBoxLayout, QPushButton
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
 
 class MyApp(QWidget):
     def __init__(self):
@@ -433,6 +434,12 @@ class MyApp(QWidget):
 
         self.setLayout(layout)
         self.show()
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MyApp()
+    sys.exit(app.exec_())
+
 ```
 ## Podsumowanie
 
